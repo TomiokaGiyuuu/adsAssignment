@@ -24,7 +24,7 @@ public class MyHeap<T extends Comparable<T>> {
         swap(0, list.size() - 1);
         list.remove(list.size() - 1);
 
-        hiddenHeapify(0);
+        heapify(0);
         return list.get(list.size() - 1);
     }
 
@@ -39,10 +39,7 @@ public class MyHeap<T extends Comparable<T>> {
 
 
     //Class methods
-    private void hiddenHeapify(int index){
-        if (index >= list.size() || index < 0)
-            throw new IndexOutOfBoundsException("index should be positive and less than size");
-
+    private void heapify(int index){
         //Parent and children data
         int largest = largestOfChilds(index);
 
@@ -51,14 +48,11 @@ public class MyHeap<T extends Comparable<T>> {
             if(leftChildOf(index) >= list.size()){
                 return;
             }
-            hiddenHeapify(largest);
+            heapify(largest);
         }
     }
 
     private void traverseUp(int index){
-        if (index >= list.size() || index < 0)
-            throw new IndexOutOfBoundsException("index should be positive and less than size");
-
         //Parent and children data
         int largest = largestOfChilds(index);
 
@@ -71,6 +65,13 @@ public class MyHeap<T extends Comparable<T>> {
         }
     }
 
+    private void swap(int index1, int index2){
+        T temp = list.get(index1);
+        list.changeDataByIndex(index1, list.get(index2));
+        list.changeDataByIndex(index2, temp);
+    }
+
+    //Getters
     private int leftChildOf(int index){
         return index * 2 + 1;
     }
@@ -84,12 +85,6 @@ public class MyHeap<T extends Comparable<T>> {
         return (int) (Math.ceil(result) - 1);
     }
 
-    private void swap(int index1, int index2){
-        T temp = list.get(index1);
-        list.changeDataByIndex(index1, list.get(index2));
-        list.changeDataByIndex(index2, temp);
-    }
-
     //Methods for my own use
     public void displayHeap()  {
         System.out.println("PARENT LEFT  RIGHT");
@@ -99,6 +94,9 @@ public class MyHeap<T extends Comparable<T>> {
         }
     }
     private int largestOfChilds(int index){
+        if (index >= list.size() || index < 0)
+            throw new IndexOutOfBoundsException("index should be positive and less than size");
+
         T parent = list.get(index);
         T leftChild = null;
         T rightChild = null;
