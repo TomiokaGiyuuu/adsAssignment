@@ -50,9 +50,6 @@ public class Start{
 //        shitGraph.addVertex("Ads");
 //        shitGraph.addVertex("very");
 //        System.out.println(shitGraph.getVerticesCount());
-//        shitGraph.addVertex("shit");
-//        System.out.println(shitGraph.getVerticesCount());
-//        shitGraph.addEdge("Ads", "very", 5);
 //        System.out.println(shitGraph.getEdgesCount());
 //        System.out.println(shitGraph.adjacencyList("Ads"));
     }
